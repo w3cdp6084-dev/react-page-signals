@@ -1,0 +1,68 @@
+{
+  "name": "react-page-signals",
+  "version": "0.1.0",
+  "description": "CSS-first page scroll signals for React without per-frame rerenders.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Yusuke Mori",
+  "homepage": "https://github.com/w3cdp6084-dev/react-page-signals#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w3cdp6084-dev/react-page-signals.git"
+  },
+  "bugs": {
+    "url": "https://github.com/w3cdp6084-dev/react-page-signals/issues"
+  },
+  "keywords": [
+    "react",
+    "scroll",
+    "css-variables",
+    "hooks",
+    "typescript"
+  ],
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build && tsc -p tsconfig.build.json",
+    "build:demo": "vite build --config vite.demo.config.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint:package": "publint",
+    "check": "pnpm typecheck && pnpm test && pnpm build && pnpm lint:package && pnpm build:demo"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
+    "happy-dom": "^20.10.6",
+    "publint": "^0.3.21",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "typescript": "^7.0.2",
+    "vite": "^8.1.5",
+    "vitest": "^4.1.10"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@11.0.9",
+  "publishConfig": {
+    "access": "public"
+  }
+}
