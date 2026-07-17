@@ -3,7 +3,7 @@
 Build reading-progress bars, hide-on-scroll headers, and past-intro styles with
 one tiny React hook.
 
-[Live demo](https://w3cdp6084-dev.github.io/react-page-signals/) ·
+[Live demo — the page itself is the example](https://w3cdp6084-dev.github.io/react-page-signals/) ·
 [日本語](./README.ja.md)
 
 ![react-page-signals demo showing a reading progress bar and scroll-aware header](./media/preview.png)
@@ -61,8 +61,9 @@ React is finished. The interactions live in CSS:
 }
 ```
 
-Open the [live demo](https://w3cdp6084-dev.github.io/react-page-signals/) and
-scroll to see all three signals in use.
+Open the [live demo](https://w3cdp6084-dev.github.io/react-page-signals/).
+Scroll down, then up: the whole page demonstrates all three signals while you
+read.
 
 ## Try the current source
 

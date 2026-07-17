@@ -2,7 +2,7 @@
 
 読了プログレスバー、スクロール方向で隠れるヘッダー、ファーストビュー通過後のスタイルを、ひとつの小さなReactフックで作ります。
 
-[デモを開く](https://w3cdp6084-dev.github.io/react-page-signals/) ·
+[デモを開く — ページ全体が利用例です](https://w3cdp6084-dev.github.io/react-page-signals/) ·
 [English](./README.md)
 
 ![読了プログレスバーとスクロールに反応するヘッダーのデモ](./media/preview.png)
@@ -59,7 +59,7 @@ React側はこれで完了です。動きはCSSに書きます。
 }
 ```
 
-[デモページ](https://w3cdp6084-dev.github.io/react-page-signals/)をスクロールすると、3種類の利用例を確認できます。
+[デモページ](https://w3cdp6084-dev.github.io/react-page-signals/)を下へ、次に上へスクロールしてみてください。ページを読む操作そのものが3種類の利用例になっています。
 
 ## 現在のソースを試す
 
