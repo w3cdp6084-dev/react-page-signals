@@ -1,28 +1,26 @@
 # react-page-signals
 
-CSS-first page scroll signals for React, without per-frame rerenders.
+Build reading-progress bars, hide-on-scroll headers, and past-intro styles with
+one tiny React hook.
 
+[Live demo](https://w3cdp6084-dev.github.io/react-page-signals/) ·
 [日本語](./README.ja.md)
 
-`react-page-signals` writes page scroll information to CSS custom properties and
-`data-*` attributes. React mounts the observer; CSS handles the visual response.
+![react-page-signals demo showing a reading progress bar and scroll-aware header](./media/preview.png)
 
-## Features
+## What can I build with it?
 
-- No React state updates while scrolling
-- Updates batched with `requestAnimationFrame`
-- Scroll progress, pixel position, direction, and threshold state
-- Custom CSS variable and attribute names
-- Restores previous values on cleanup
-- SSR-safe and fully typed
+| UI behavior | Signal you style |
+| --- | --- |
+| A reading-progress bar | `--scroll-progress` from `0` to `1` |
+| A header that hides down and returns up | `data-scroll-direction` |
+| A compact header after the intro | `data-is-scrolled` |
+| Parallax or scroll-linked spacing | `--scroll-y` in pixels |
 
-## Install
+The hook updates CSS variables and `data-*` attributes directly. It does not
+set React state while the user scrolls.
 
-```bash
-pnpm add react-page-signals
-```
-
-## Usage
+## The 30-second example
 
 Call the hook once near the root of your app:
 
@@ -30,13 +28,58 @@ Call the hook once near the root of your app:
 import { usePageSignals } from "react-page-signals";
 
 export function App() {
-  usePageSignals();
+  usePageSignals({ scrolledThreshold: 80 });
 
-  return <main>{/* Your page */}</main>;
+  return (
+    <>
+      <div className="reading-progress" />
+      <header className="site-header">My site</header>
+      <main>{/* A long page */}</main>
+    </>
+  );
 }
 ```
 
-It writes these values to `<html>` by default:
+React is finished. The interactions live in CSS:
+
+```css
+.reading-progress {
+  transform: scaleX(var(--scroll-progress));
+  transform-origin: left;
+}
+
+[data-scroll-direction="down"] .site-header {
+  transform: translateY(-100%);
+}
+
+[data-scroll-direction="up"] .site-header {
+  transform: translateY(0);
+}
+
+[data-is-scrolled="true"] .site-header {
+  backdrop-filter: blur(16px);
+}
+```
+
+Open the [live demo](https://w3cdp6084-dev.github.io/react-page-signals/) and
+scroll to see all three signals in use.
+
+## Try the current source
+
+The first npm release is not published yet. You can run the project locally:
+
+```bash
+git clone https://github.com/w3cdp6084-dev/react-page-signals.git
+cd react-page-signals
+pnpm install
+pnpm dev
+```
+
+Then open the local URL printed by Vite.
+
+## What gets written?
+
+By default, the hook writes these values to `<html>`:
 
 ```html
 <html
@@ -46,22 +89,8 @@ It writes these values to `<html>` by default:
 >
 ```
 
-Use them from CSS:
-
-```css
-.progress-bar {
-  transform: scaleX(var(--scroll-progress));
-  transform-origin: left;
-}
-
-[data-scroll-direction="down"] .site-header {
-  transform: translateY(-100%);
-}
-
-[data-is-scrolled="true"] .site-header {
-  backdrop-filter: blur(16px);
-}
-```
+Updates are batched with `requestAnimationFrame`. Existing values are restored
+when the hook unmounts.
 
 ## Options
 
@@ -85,8 +114,7 @@ usePageSignals({
 | `scrolledAttribute` | `data-is-scrolled` | Receives `true` or `false` |
 | `disabled` | `false` | Disables observation without conditionally calling the hook |
 
-For non-React integrations, the package also exports `observePageSignals`. It
-returns a cleanup function.
+For non-React integrations, the package also exports `observePageSignals`:
 
 ```ts
 import { observePageSignals } from "react-page-signals";
@@ -94,6 +122,14 @@ import { observePageSignals } from "react-page-signals";
 const stop = observePageSignals();
 stop();
 ```
+
+## Project goals
+
+- Stay small and CSS-first
+- Avoid React rerenders during scroll
+- Keep the default API useful without configuration
+- Remain SSR-safe and fully typed
+- Restore the page to its previous state on cleanup
 
 ## Development
 

@@ -62,6 +62,7 @@ html[data-scroll-direction="down"][data-is-scrolled="true"] .header {
 
 .brand,
 .signals,
+.github-link,
 .eyebrow,
 .step > span,
 footer {
@@ -78,6 +79,18 @@ footer {
   display: flex;
   gap: 8px;
   font-size: 11px;
+  text-transform: uppercase;
+}
+
+.header-end {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.github-link {
+  font-size: 11px;
+  text-decoration: none;
   text-transform: uppercase;
 }
 
@@ -133,18 +146,36 @@ h1 {
   line-height: 1.45;
 }
 
-.scroll-cue {
-  width: fit-content;
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
   margin-top: 52px;
+}
+
+.primary-action {
   color: var(--accent);
   font-size: 14px;
   text-decoration: none;
 }
 
-.scroll-cue span {
+.primary-action span {
   display: inline-block;
   margin-left: 8px;
   transform: translateY(calc(var(--scroll-progress, 0) * 12px));
+}
+
+.hero-actions code,
+.step code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+.hero-actions code {
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: rgb(20 33 28 / 68%);
+  font-size: 12px;
 }
 
 .steps {
@@ -182,6 +213,17 @@ h1 {
   line-height: 1.6;
 }
 
+.step code {
+  display: block;
+  width: fit-content;
+  margin-top: 30px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--accent);
+  font-size: 11px;
+}
+
 .code-section {
   min-height: 100svh;
   padding: 180px 0;
@@ -214,6 +256,15 @@ footer {
     display: none !important;
   }
 
+  .github-link {
+    display: none;
+  }
+
+  .hero-actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
   .steps {
     grid-template-columns: 1fr;
   }
@@ -239,7 +290,7 @@ footer {
   }
 
   .header,
-  .scroll-cue span {
+  .primary-action span {
     transition: none;
     transform: none !important;
   }
