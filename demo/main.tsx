@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { usePageSignals } from "../src";
+import authorMark from "./author-mark.svg";
 import "./styles.css";
 
 const behaviors = [
@@ -65,9 +66,20 @@ function App() {
       </div>
 
       <header className="site-header">
-        <a href="#top" className="brand">
-          react-page-signals
-        </a>
+        <div className="brand-lockup">
+          <a href="#top" className="brand">
+            react-page-signals
+          </a>
+          <span className="brand-divider" aria-hidden="true" />
+          <a
+            className="author-link"
+            href="https://github.com/w3cdp6084-dev"
+            aria-label="Yusuke Mori on GitHub"
+          >
+            <img src={authorMark} alt="" />
+            <span>by Yusuke Mori</span>
+          </a>
+        </div>
         <div className="header-mode" aria-hidden="true">
           <span className="header-mode-intro">Live demo</span>
           <span className="header-mode-reading">Reading mode</span>
@@ -221,6 +233,12 @@ function App() {
       </main>
 
       <footer>
+        <div className="footer-signature">
+          <img src={authorMark} alt="" />
+          <span>
+            Created by <strong>Yusuke Mori</strong>
+          </span>
+        </div>
         <span>react-page-signals · MIT</span>
         <a href="#top">Run the demo again ↑</a>
       </footer>
